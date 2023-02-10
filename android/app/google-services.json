@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "770412894457",
+    "project_id": "chatwith-23601",
+    "storage_bucket": "chatwith-23601.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770412894457:android:f7f08c9ec229ae49b5aa28",
+        "android_client_info": {
+          "package_name": "com.Avinash56.chatwith"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770412894457-grvf74up8nndjeaong4ffk02ef25e7n0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Avinash56.chatwith",
+            "certificate_hash": "8934bd5c343d2c21d4c94cfafa302dcb2a283a02"
+          }
+        },
+        {
+          "client_id": "770412894457-sld9o6hk9qa1ctg8dra0uugpk6nl47l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxYi08mJetBn5z4gSAAFB27tYq0Hyoozk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770412894457-sld9o6hk9qa1ctg8dra0uugpk6nl47l5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "770412894457-2an96a1lvl02o7jlepdmeju0l22hf1k1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Avinash56.chatwith"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
