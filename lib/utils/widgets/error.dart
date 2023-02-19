@@ -6,12 +6,14 @@ class ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(20),
       child: Text(
-        'Error',
-        style: TextStyle(
+        message.toString(),
+        style: const TextStyle(
           color: Colors.red,
-          fontSize: 30,
+          fontSize: 22,
           fontWeight: FontWeight.bold,
         ),
       ),

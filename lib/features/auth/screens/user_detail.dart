@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:chatwith/features/auth/controller/auth_controller.dart';
 import 'package:chatwith/utils/colors.dart';
 import 'package:chatwith/utils/images.dart';
-import 'package:chatwith/utils/pick_image.dart';
+import 'package:chatwith/utils/utils.dart';
 import 'package:chatwith/utils/widgets/custom_button.dart';
 import 'package:chatwith/utils/widgets/toast_messages.dart';
 import 'package:flutter/material.dart';
@@ -59,79 +59,81 @@ class _UserDetailState extends ConsumerState<UserDetail> {
     return Scaffold(
         body: SafeArea(
             child: Center(
-                child: Column(
-      children: [
-        Stack(
-          children: [
-            image == null
-                ? const CircleAvatar(
-                    backgroundImage: AssetImage(Images.noProfileImage),
-                    radius: 60,
-                  )
-                : CircleAvatar(
-                    backgroundImage: FileImage(image!),
-                    radius: 60,
+                child: SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              image == null
+                  ? const CircleAvatar(
+                      backgroundImage: AssetImage(Images.noProfileImage),
+                      radius: 60,
+                    )
+                  : CircleAvatar(
+                      backgroundImage: FileImage(image!),
+                      radius: 60,
+                    ),
+              Positioned(
+                bottom: -10,
+                left: 80,
+                child: IconButton(
+                  onPressed: selectImage,
+                  icon: const Icon(
+                    Icons.add_a_photo_rounded,
+                    size: 40,
                   ),
-            Positioned(
-              bottom: -10,
-              left: 80,
-              child: IconButton(
-                onPressed: selectImage,
-                icon: const Icon(
-                  Icons.add_a_photo_rounded,
-                  size: 40,
                 ),
+              )
+            ],
+          ),
+          Container(
+            width: size.width * 0.8,
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              controller: _nameController,
+              decoration: const InputDecoration(
+                hintText: 'Your Name  (*)',
+                hintStyle: TextStyle(color: Colors.grey),
+                // border: InputBorder.none,
               ),
-            )
-          ],
-        ),
-        Container(
-          width: size.width * 0.8,
-          padding: const EdgeInsets.all(20),
-          child: TextField(
-            controller: _nameController,
-            decoration: const InputDecoration(
-              hintText: 'Your Name  (*)',
-              hintStyle: TextStyle(color: Colors.grey),
-              // border: InputBorder.none,
             ),
           ),
-        ),
-        Container(
-          width: size.width * 0.8,
-          padding: const EdgeInsets.all(20),
-          child: TextField(
-            controller: _emailIdController,
-            decoration: const InputDecoration(
-              hintText: 'Your Email Id',
-              hintStyle: TextStyle(color: Colors.grey),
-              // border: InputBorder.none,
+          Container(
+            width: size.width * 0.8,
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              controller: _emailIdController,
+              decoration: const InputDecoration(
+                hintText: 'Your Email Id',
+                hintStyle: TextStyle(color: Colors.grey),
+                // border: InputBorder.none,
+              ),
             ),
           ),
-        ),
-        Container(
-          width: size.width * 0.8,
-          padding: const EdgeInsets.all(20),
-          child: TextField(
-            maxLines: null,
-            controller: _bioController,
-            decoration: const InputDecoration(
-              hintText: 'Tell us about yourself',
-              hintStyle: TextStyle(color: Colors.grey),
-              // border: InputBorder.none,
+          Container(
+            width: size.width * 0.8,
+            padding: const EdgeInsets.all(20),
+            child: TextField(
+              maxLines: null,
+              controller: _bioController,
+              decoration: const InputDecoration(
+                hintText: 'Tell us about yourself',
+                hintStyle: TextStyle(color: Colors.grey),
+                // border: InputBorder.none,
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          width: size.width * 0.5,
-          // height: size.height * 0.2,
-          child: CustomButton(
-            text: 'Save',
-            onPressed: saveUserData,
-            color: c33cc33,
-          ),
-        )
-      ],
+          SizedBox(
+            width: size.width * 0.5,
+            // height: size.height * 0.2,
+            child: CustomButton(
+              text: 'Save',
+              onPressed: saveUserData,
+              color: c33cc33,
+            ),
+          )
+        ],
+      ),
     ))));
   }
 }

@@ -1,7 +1,7 @@
 import 'package:chatwith/utils/colors.dart';
 import 'package:chatwith/utils/images.dart';
-import 'package:chatwith/features/chat/screens/chat_list.dart';
-import 'package:chatwith/features/chat/screens/contacts_list.dart';
+import 'package:chatwith/features/chat/widgets/chat_list.dart';
+import 'package:chatwith/features/chat/widgets/contacts_list.dart';
 import 'package:chatwith/utils/widgets/profile_bar.dart';
 import 'package:chatwith/utils/widgets/web_chat_appbar.dart';
 import 'package:chatwith/utils/widgets/web_search_bar.dart';
@@ -38,6 +38,7 @@ class WebScreenLayout extends StatelessWidget {
               const Expanded(
                   child: ChatList(
                 receiverUserId: '',
+                isGroupChat: true,
               )),
               Container(
                 height: MediaQuery.of(context).size.height * 0.1,

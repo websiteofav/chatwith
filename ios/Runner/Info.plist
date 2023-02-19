@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<key>NSAppTransportSecurity</key>
+
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
@@ -53,5 +55,9 @@
 	<string>Pick Profile Image</string>
 	<key>NSContactsUsageDescription</key>
      <string>To feth contacts for the chat application</string>
+	<key>NSAppleMusicUsageDescription</key>
+      <string>So that user can listen to audio</string> 
+	 <key>NSAllowsArbitraryLoads</key>
+               <true/>  
 </dict>
 </plist>

@@ -1,7 +1,13 @@
+import 'dart:io';
+
 import 'package:chatwith/features/auth/controller/auth_controller.dart';
 import 'package:chatwith/features/contacts/screens/contacts.dart';
+import 'package:chatwith/features/group/screens/create_group.dart';
+import 'package:chatwith/features/status/screens/confirm_status.dart';
+import 'package:chatwith/features/status/screens/status_contact.dart';
 import 'package:chatwith/utils/colors.dart';
-import 'package:chatwith/features/chat/screens/contacts_list.dart';
+import 'package:chatwith/features/chat/widgets/contacts_list.dart';
+import 'package:chatwith/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -13,10 +19,12 @@ class MobileScreenLayout extends ConsumerStatefulWidget {
 }
 
 class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
-    with WidgetsBindingObserver {
+    with WidgetsBindingObserver, TickerProviderStateMixin {
+  late TabController _tabController;
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -68,21 +76,44 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
                     Icons.search_rounded,
                   ),
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.more_vert_rounded),
-                )
+                PopupMenuButton(itemBuilder: ((context) {
+                  return [
+                    PopupMenuItem(
+                        height: 30,
+                        child: const Text('New Group'),
+                        onTap: () => Future(() => Navigator.of(context)
+                            .pushNamed(CreateGroup.routeName))),
+                    // PopupMenuItem(
+                    //   child: Text('New Broadcast'),
+                    // ),
+                    // PopupMenuItem(
+                    //   child: Text('WhatsApp Web'),
+                    // ),
+                    // PopupMenuItem(
+                    //   child: Text('Starred Messages'),
+                    // ),
+                    // PopupMenuItem(
+                    //   child: Text('Settings'),
+                    // ),
+                  ];
+                }))
               ],
-              bottom: const TabBar(
+              // IconButton(
+              //   onPressed: () {},
+              //   icon: const Icon(Icons.more_vert_rounded),
+              // )
+
+              bottom: TabBar(
+                  controller: _tabController,
                   indicatorColor: c33cc33,
                   indicatorWeight: 3,
                   labelColor: c33cc33,
                   unselectedLabelColor: cffffff,
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                       letterSpacing: 2),
-                  tabs: [
+                  tabs: const [
                     Tab(
                       text: 'Chats',
                     ),
@@ -94,10 +125,25 @@ class _MobileScreenLayoutState extends ConsumerState<MobileScreenLayout>
                     ),
                   ]),
             ),
-            body: const ContactsList(),
+            body: TabBarView(controller: _tabController, children: const [
+              ContactsList(),
+              StatusContact(),
+              Center(child: Text('Calls'))
+            ]),
             floatingActionButton: FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(Contacts.routeName),
+              onPressed: () async {
+                if (_tabController.index == 0) {
+                  Navigator.of(context).pushNamed(Contacts.routeName);
+                } else {
+                  File? image = await pickImageFromGallery(context);
+                  if (image != null) {
+                    if (mounted) {
+                      Navigator.of(context)
+                          .pushNamed(ConfirmStatus.routeName, arguments: image);
+                    }
+                  }
+                }
+              },
               backgroundColor: c33cc33,
               child: const Icon(Icons.message_rounded, color: cffffff),
             )));

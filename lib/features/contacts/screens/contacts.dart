@@ -1,5 +1,5 @@
 import 'package:chatwith/features/contacts/controller/contact_controller.dart';
-import 'package:chatwith/features/chat/screens/contacts_list.dart';
+import 'package:chatwith/features/chat/widgets/contacts_list.dart';
 import 'package:chatwith/utils/widgets/error.dart';
 import 'package:chatwith/utils/widgets/loader.dart';
 import 'package:flutter/material.dart';
